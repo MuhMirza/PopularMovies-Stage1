@@ -19,32 +19,15 @@ import java.net.URL;
 import id.muhmirza.popularmovies.model.Movie;
 
 /**
- * Created by Mirza
- * <p/>
- * Background loading of data from the Internet.
+ * Created by mirza on 09/07/17.
  */
 public class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
-    /**
-     * For logging purposes
-     */
+
     private final String LOG_TAG = FetchMovieAsyncTask.class.getSimpleName();
-
-    /**
-     * TMDb API key
-     */
     private final String mApiKey;
-
-    /**
-     * Interface / listener
-     */
     private final OnTaskCompleted mListener;
 
-    /**
-     * Constructor
-     *
-     * @param listener UI listener
-     * @param apiKey TMDb API key
-     */
+
     public FetchMovieAsyncTask(OnTaskCompleted listener, String apiKey) {
         super();
 
@@ -108,7 +91,7 @@ public class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
 
         try {
             // Make sense of the JSON data
-            return getMoviesDataFromJson(moviesJsonStr);
+            return getMoviesFromJson(moviesJsonStr);
         } catch (JSONException e) {
             Log.e(LOG_TAG, e.getMessage(), e);
             e.printStackTrace();
@@ -117,14 +100,8 @@ public class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
         return null;
     }
 
-    /**
-     * Extracts data from the JSON object and returns an Array of movie objects.
-     *
-     * @param moviesJsonStr JSON string to be traversed
-     * @return Array of Movie objects
-     * @throws JSONException
-     */
-    private Movie[] getMoviesDataFromJson(String moviesJsonStr) throws JSONException {
+
+    private Movie[] getMoviesFromJson(String moviesJsonStr) throws JSONException {
         // JSON tags
         final String TAG_RESULTS = "results";
         final String TAG_ORIGINAL_TITLE = "original_title";
@@ -149,7 +126,7 @@ public class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
             JSONObject movieInfo = resultsArray.getJSONObject(i);
 
             // Store data in movie object
-            movies[i].setOriginalTitle(movieInfo.getString(TAG_ORIGINAL_TITLE));
+            movies[i].setTitle(movieInfo.getString(TAG_ORIGINAL_TITLE));
             movies[i].setPosterPath(movieInfo.getString(TAG_POSTER_PATH));
             movies[i].setOverview(movieInfo.getString(TAG_OVERVIEW));
             movies[i].setVoteAverage(movieInfo.getDouble(TAG_VOTE_AVERAGE));
@@ -159,13 +136,7 @@ public class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
         return movies;
     }
 
-    /**
-     * Creates and returns an URL.
-     *
-     * @param parameters Parameters to be used in the API call
-     * @return URL formatted with parameters for the API
-     * @throws MalformedURLException
-     */
+
     private URL getApiUrl(String[] parameters) throws MalformedURLException {
         final String TMDB_BASE_URL = "https://api.themoviedb.org/3/discover/movie?";
         final String SORT_BY_PARAM = "sort_by";
@@ -183,7 +154,6 @@ public class FetchMovieAsyncTask extends AsyncTask<String, Void, Movie[]> {
     protected void onPostExecute(Movie[] movies) {
         super.onPostExecute(movies);
 
-        // Notify UI
-        mListener.onFetchMoviesTaskCompleted(movies);
+        mListener.onFetchDataCompleted(movies);
     }
 }

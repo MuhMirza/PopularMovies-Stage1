@@ -1,4 +1,4 @@
-package id.muhmirza.popularmovies.utils;
+package id.muhmirza.popularmovies.ui.home;
 
 import android.content.Context;
 import android.view.View;
@@ -12,20 +12,12 @@ import id.muhmirza.popularmovies.R;
 import id.muhmirza.popularmovies.model.Movie;
 
 /**
- * Created by Mirza
- * <p/>
- * Custom adapter for populating GridView.
+ * Created by mirza on 09/07/17.
  */
 public class ImageAdapter extends BaseAdapter {
     private final Context mContext;
     private final Movie[] mMovies;
 
-    /**
-     * Constructor
-     *
-     * @param context Application context
-     * @param movies  Movie array
-     */
     public ImageAdapter(Context context, Movie[] movies) {
         mContext = context;
         mMovies = movies;
@@ -41,12 +33,12 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public Movie getItem(int position) {
+    public Movie getItem(int pos) {
         if (mMovies == null || mMovies.length == 0) {
             return null;
         }
 
-        return mMovies[position];
+        return mMovies[pos];
     }
 
     @Override
@@ -70,8 +62,8 @@ public class ImageAdapter extends BaseAdapter {
                 .load(mMovies[position].getPosterPath())
                 .resize(mContext.getResources().getInteger(R.integer.tmdb_poster_w185_width),
                         mContext.getResources().getInteger(R.integer.tmdb_poster_w185_height))
-                .error(R.drawable.not_found)
-                .placeholder(R.drawable.searching)
+                .error(R.drawable.ic_error)
+                .placeholder(R.drawable.ic_loading)
                 .into(imageView);
 
         return imageView;

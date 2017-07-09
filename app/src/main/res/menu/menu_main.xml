@@ -1,4 +1,4 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
-    tools:context="id.muhmirza.popularmovies.ui.HomeActivity">
+    tools:context="id.muhmirza.popularmovies.ui.home.HomeActivity">
 
 </menu>

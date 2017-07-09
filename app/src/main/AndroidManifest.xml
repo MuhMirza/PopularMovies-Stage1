@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="id.muhmirza.popularmovies.ui.HomeActivity"
+            android:name="id.muhmirza.popularmovies.ui.home.HomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"> <!-- Gives wanted up button navigation -->
             <intent-filter>
@@ -23,12 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="id.muhmirza.popularmovies.ui.MovieDetailsActivity"
+            android:name="id.muhmirza.popularmovies.ui.detail.DetailsActivity"
             android:label="@string/title_activity_movie_details"
-            android:parentActivityName="id.muhmirza.popularmovies.ui.HomeActivity">
+            android:parentActivityName="id.muhmirza.popularmovies.ui.home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="id.muhmirza.popularmovies.ui.HomeActivity" />
+                android:value="id.muhmirza.popularmovies.ui.home.HomeActivity" />
         </activity>
     </application>
 
