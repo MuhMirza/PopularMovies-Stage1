@@ -7,7 +7,7 @@
 <resources>
     <string name="app_name">Popular Movies</string>
 
-    <string name="key_themoviedb">ad9532c934ea79dd884e50f312831a19</string>
+    <string name="key_themoviedb"></string>
 
     <!-- Titles -->
     <!-- Title naming the activity Movie Details -->
